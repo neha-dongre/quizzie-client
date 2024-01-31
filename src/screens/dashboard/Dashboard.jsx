@@ -3,10 +3,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styles from "./Dashboard.module.css";
-import TrendingCard from "../../components/trendingCard/TrendingCard";
-import DeleteIcon from "../../assets/images/delete-icon.svg";
-import EditIcon from "../../assets/images/edit-icon.svg";
-import ShareIcon from "../../assets/images/share-icon.svg";
+import TrendingCard from "../../components/TrendingQuizs/TrendingQuizs";
+import EditIcon from "../../assets/edit-icon.svg";
+import ShareIcon from "../../assets/share-icon.svg";
+import DeleteIcon from "../../assets/delete-icon.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -172,9 +172,11 @@ const Dashboard = () => {
       return;
     }
     if (!isAnsOptionFilled) {
+      if (quizType === "Poll Type") {
       alert("Answer option is not set. Please set it.");
       return;
     }
+  }
     if (!isTimerTypeFilled) {
       alert("Timer type is not set. Please set it.");
       return;

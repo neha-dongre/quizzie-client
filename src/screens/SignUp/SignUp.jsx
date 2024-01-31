@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import styles from "./Register.module.css";
-import { FadeLoader } from "react-spinners";
+import React, { useState} from "react";
+import styles from "./SignUp.module.css";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+const SignUp = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -105,20 +104,11 @@ const Register = () => {
 
   };
 
-  const [loading, setLoading] = useState(true);
+  
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
+  
 
-  if (loading) {
-    return (
-      <div className={styles.loaderContainer}>
-        <FadeLoader color="#474444" />
-      </div>
-    );
-  }
+  
 
   return (
     <>
@@ -282,4 +272,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SignUp;

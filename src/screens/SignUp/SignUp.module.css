@@ -6,6 +6,7 @@ body {
   background: #f2f2f2;
 }
 
+
 .mainContainer {
   text-align: center;
   /* min-height: 100vh; */
@@ -13,12 +14,7 @@ body {
   padding: 3rem;
 }
 
-.loaderContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+
 
 .subContainer {
   border-radius: 0.9375rem;

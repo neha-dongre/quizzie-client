@@ -1,42 +1,42 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Routes, Route } from "react-router-dom";
-import Register from "./screens/register/Register";
+import SignUp from "./screens/SignUp/SignUp"; 
 import Dashboard from "./screens/dashboard/Dashboard";
+import QuizResult from "./screens/quizResult/QuizResult"; 
+import QuizQuestions from "./screens/quizQuestions/QuizQuestions"; 
 import PollCompletion from "./screens/pollCompletion/PollCompletion";
-import QuizCompletion from "./screens/quizCompletion/QuizCompletion";
-import Questions from "./screens/questions/Questions";
-import ItemNotFound from "./screens/itemNotFound/ItemNotFound";
+import ItemNotFound from "./screens/ItemNotFound/ItemNotFound";
 import QuizAnalysis from "./screens/quizAnalysis/QuizAnalysis";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Register />,
+    element: <SignUp />, 
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: <Dashboard />, 
   },
   {
-    path: "/pollcompleted",
-    element: <PollCompletion />,
+    path: "/pollCompletion",
+    element: <PollCompletion />, 
   },
   {
-    path: "/quizcompleted",
-    element: <QuizCompletion />,
+    path: "/quizresult",
+    element: <QuizResult />, 
   },
   {
     path: "/quiz/:quizId",
-    element: <Questions />,
+    element: <QuizQuestions />, 
   },
   {
     path: "/item-not-found",
-    element: <ItemNotFound />,
+    element: <ItemNotFound />, 
   },
   {
     path: "/quizanalysis/:quizId",
-    element: <QuizAnalysis />,
+    element: <QuizAnalysis />, 
   },
 ]);
 
@@ -46,8 +46,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Routes>
         {router}
         {/* Catch-all route for undefined routes */}
-        <Route element={<ItemNotFound />} />
+        <Route element={<ItemNotFound />} /> 
       </Routes>
     </RouterProvider>
   </React.StrictMode>
 );
+
+
+
+

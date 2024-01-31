@@ -2,11 +2,42 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./QuizAnalysis.module.css";
-import { FadeLoader } from "react-spinners";
+
+const LoadingState = () => (
+  <div className={styles.loaderContainer}>
+    {/* You can customize the loading state as needed */}
+    <div>Loading...</div>
+  </div>
+);
+
+const QuestionAnalysis = ({ question, totalAttempts, correctAttempts, index }) => {
+  const incorrectAttempts = totalAttempts - correctAttempts;
+
+  return (
+    <div className={styles.questionAnalysisContainer}>
+      <div className={styles.question}>
+        Q.{index + 1} {question}
+      </div>
+      <div className={styles.boxes}>
+        <div className={styles.totalAttemptsBox}>
+          <div>{totalAttempts}</div>People Attempted the Question
+        </div>
+        <div className={styles.correctAttemptsBox}>
+          <div>{correctAttempts}</div>People Attempted Correctly
+        </div>
+        <div className={styles.incorrectAttemptsBox}>
+          <div>{incorrectAttempts}</div>People Attempted Incorrectly
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const QuizAnalysis = () => {
   const { quizId } = useParams();
   const [quiz, setQuiz] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
@@ -14,47 +45,36 @@ const QuizAnalysis = () => {
       .then((response) => {
         setQuiz(response.data);
       })
-      .catch((error) => console.error("Error fetching quiz:", error));
+      .catch((error) => {
+        console.error("Error fetching quiz:", error);
+        setError("Error fetching quiz. Please try again later.");
+      })
+      .finally(() => setLoading(false));
   }, [quizId]);
 
-  if (!quiz) {
-    return (
-      <div className={styles.loaderContainer}>
-        <FadeLoader color="#474444" />
-      </div>
-    );
+  if (loading || !quiz) {
+    return <LoadingState />;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
   }
 
   return (
     <div className={styles.mainContainer}>
       <div className={styles.header}>{quiz.quizName} Question Analysis</div>
-      {Object.values(quiz.questions[0].pollQuestion).map((question, index) => {
-        const totalAttempts = Math.round(quiz.impressions/2);
-        const correctAttempts =
-          (quiz.correctAnswers && quiz.correctAnswers[index]) || 0;
-        const incorrectAttempts = totalAttempts - correctAttempts;
-
-        return (
-          <div key={index} className={styles.questionAnalysisContainer}>
-            <div className={styles.question}>
-              Q.{index + 1} {question}
-            </div>
-            <div className={styles.boxes}>
-              <div className={styles.totalAttemptsBox}>
-                <div>{totalAttempts}</div>People Attempted the Question
-              </div>
-              <div className={styles.correctAttemptsBox}>
-                <div>{correctAttempts}</div>People Attempted Correctly
-              </div>
-              <div className={styles.incorrectAttemptsBox}>
-                <div>{incorrectAttempts}</div>People Attempted Incorrectly
-              </div>
-            </div>
-          </div>
-        );
-      })}
+      {quiz.questions.map((question, index) => (
+        <QuestionAnalysis
+          key={index}
+          question={question.pollQuestion}
+          totalAttempts={Math.round(quiz.impressions / 2)}
+          correctAttempts={quiz.correctAnswers?.[index] || 0}
+          index={index}
+        />
+      ))}
     </div>
   );
 };
 
 export default QuizAnalysis;
+

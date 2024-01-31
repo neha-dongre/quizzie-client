@@ -1,10 +1,10 @@
 .mainContainer {
-  background: #041325 !important;
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #041325 !important;
 }
 
 .loaderContainer {
@@ -14,32 +14,31 @@
   height: 100vh;
 }
 
-
 .thankYouContainer {
+  width: 45vw;
+  height: 70vh;
+  padding: 1rem 7rem;
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  line-height: 5rem;
+  text-align: center;
   border-radius: 0.9375rem;
   background: #fff;
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 45vw;
-  height: 70vh;
-  text-align: center;
-  font-size: 3rem;
-  padding: 1rem 7rem;
-  font-weight: 600;
-  letter-spacing: 0.2rem;
-  line-height: 5rem;
 }
 
 @media (max-width: 600px) {
   .thankYouContainer {
     width: -webkit-fill-available;
     height: -webkit-fill-available;
-    border-radius: 0;
+    padding: 1rem 2rem;
     font-size: 2.3rem;
+    border-radius: 0;
     letter-spacing: normal;
     line-height: normal;
-    padding: 1rem 2rem;
   }
 }
