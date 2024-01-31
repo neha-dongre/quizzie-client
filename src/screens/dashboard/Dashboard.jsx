@@ -9,15 +9,13 @@ import EditIcon from "../../assets/images/edit-icon.svg";
 import ShareIcon from "../../assets/images/share-icon.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FadeLoader } from "react-spinners";
-import Confetti from "react-confetti";
+
 
 const Dashboard = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
+
 
   const [activeScreen, setActiveScreen] = useState("dashboard");
 
@@ -277,18 +275,7 @@ const Dashboard = () => {
   //for quiz published modal
   const [showQuizPublishedModal, setShowQuizPublishedModal] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-      setHeight(window.innerHeight);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  
 
   const jwtToken = localStorage.getItem("jwt");
   // console.log("jwt from local storage:", jwtToken);
@@ -458,7 +445,7 @@ const Dashboard = () => {
           {activeScreen === "dashboard" &&
             (dashboardLoading ? (
               <div className={styles.loaderContainer}>
-                <FadeLoader color="#474444" />
+               
               </div>
             ) : (
               <div className={styles.dashboardScreen}>
@@ -517,7 +504,7 @@ const Dashboard = () => {
           {activeScreen === "analytics" &&
             (isAnalyticsLoading ? (
               <div className={styles.loaderContainer}>
-                <FadeLoader color="#474444" />
+               
               </div>
             ) : (
               <div className={styles.analyticsScreen}>
@@ -947,7 +934,7 @@ const Dashboard = () => {
         )}
         {showQuizPublishedModal && (
           <div className={styles.modalOverlay} onClick={handleCancel}>
-            <Confetti width={width} height={height} />
+       
             <div
               className={styles.modalPublished}
               onClick={(e) => e.stopPropagation()}

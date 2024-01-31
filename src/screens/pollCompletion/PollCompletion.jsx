@@ -29,7 +29,7 @@ const PollCompletion = () => {
   if (loading) {
     return (
       <div className={styles.loaderContainer}>
-        <FadeLoader color="#474444" />
+        <FadeLoader color="#403535" />
       </div>
     );
   }

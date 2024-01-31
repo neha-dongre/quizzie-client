@@ -101,7 +101,7 @@ const Register = () => {
         console.error("Error:", error);
       });
 
-    console.log("fucntion stopped");
+    console.log("function stopped");
 
   };
 
